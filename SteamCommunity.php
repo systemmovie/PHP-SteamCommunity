@@ -163,6 +163,7 @@ class SteamCommunity
             }
             $this->_setSession();
             $this->loggedIn = true;
+            $this->requiresEmail = false;
             return LoginResult::LoginOkay;
         }
 
@@ -270,7 +271,7 @@ class SteamCommunity
         if (is_null($this->steamId)) {
             $this->_setSession();
         }
-        return $this->steamId != 0;
+        return $this->steamId != 0 && !$this->requiresEmail;
     }
 
     private function _setSession()
